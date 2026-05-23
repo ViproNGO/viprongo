@@ -218,28 +218,31 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
         {selectedActivity && (
           <div 
             onClick={() => setSelectedActivity(null)}
-            className="fixed inset-0 bg-black/95 backdrop-blur-md z-[100] flex items-center justify-center p-2 sm:p-4 md:p-8 select-none"
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-[100] flex items-stretch justify-center select-none"
           >
-            {/* Lightroom Card Container */}
+            {/* Lightroom Card Container — full screen on mobile, centered card on desktop */}
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 40 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-6xl bg-[#150d15] rounded-2xl border border-white/10 shadow-2xl flex flex-col lg:flex-row overflow-hidden max-h-[95vh] sm:max-h-[90vh]"
+              className="relative w-full max-w-6xl bg-[#150d15] flex flex-col lg:flex-row overflow-hidden lg:m-8 lg:rounded-3xl lg:border lg:border-white/10 lg:shadow-2xl lg:self-center"
             >
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedActivity(null)}
-                className="absolute top-2 right-2 z-50 p-2 bg-black/50 border border-white/10 hover:bg-white/10 text-white rounded-full transition-colors backdrop-blur-md"
+                className="absolute top-4 right-4 z-50 p-2.5 bg-black/60 border border-white/20 hover:bg-white/10 text-white rounded-full transition-colors backdrop-blur-md"
                 title="Close"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
 
-              {/* Left Side: Dynamic Photo Slideshow Box */}
-              <div className="flex-[0.6] bg-black flex flex-col justify-between items-center relative h-[60vh] lg:aspect-auto lg:h-[70vh]">
-                {/* Active Image Frame */}
+              {/* ── IMAGE SECTION ── fills most of the screen on mobile */}
+              <div
+                className="relative bg-black flex flex-col lg:flex-1 lg:h-[80vh]"
+                style={{ minHeight: '65vh' }}
+              >
+                {/* Main image */}
                 <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.img
@@ -248,49 +251,54 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
                       onError={(e) => {
                         e.currentTarget.src = "https://images.unsplash.com/photo-1593113565632-475269f8ed53?q=80&w=800&auto=format&fit=crop";
                       }}
-                      initial={{ opacity: 0, scale: 0.98 }}
+                      initial={{ opacity: 0, scale: 0.96 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.3 }}
+                      exit={{ opacity: 0, scale: 0.96 }}
+                      transition={{ duration: 0.25 }}
                       className="max-w-full max-h-full object-contain"
+                      style={{ maxHeight: '55vh' }}
                     />
                   </AnimatePresence>
 
-                  {/* Left / Right Nav Arrows */}
+                  {/* Nav Arrows */}
                   {selectedActivity.images.length > 1 && (
                     <>
                       <button
                         onClick={handlePrevPhoto}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/40 border border-white/10 hover:bg-white/10 text-white rounded-full transition-all backdrop-blur-sm z-30"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 p-3 bg-black/50 border border-white/20 text-white rounded-full backdrop-blur-sm z-30 active:scale-95"
                       >
-                        <ChevronLeft className="w-5 h-5" />
+                        <ChevronLeft className="w-6 h-6" />
                       </button>
                       <button
                         onClick={handleNextPhoto}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/40 border border-white/10 hover:bg-white/10 text-white rounded-full transition-all backdrop-blur-sm z-30"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-3 bg-black/50 border border-white/20 text-white rounded-full backdrop-blur-sm z-30 active:scale-95"
                       >
-                        <ChevronRight className="w-5 h-5" />
+                        <ChevronRight className="w-6 h-6" />
                       </button>
                     </>
                   )}
                 </div>
 
-                {/* Interactive Slider Thumbnail Strip at the bottom */}
+                {/* Thumbnail strip */}
                 {selectedActivity.images.length > 1 && (
-                  <div className="w-full bg-[#180f18]/60 backdrop-blur-md border-t border-white/5 py-3 px-2 overflow-x-auto flex justify-start lg:justify-center space-x-2 scrollbar-none shrink-0 z-20">
+                  <div className="w-full bg-black/60 border-t border-white/10 py-3 px-4 overflow-x-auto flex gap-2 scrollbar-none shrink-0">
                     {selectedActivity.images.map((imgUrl: string, idx: number) => (
                       <button
                         key={idx}
                         onClick={() => setActivePhotoIdx(idx)}
-                        className={`relative w-12 h-10 rounded-md overflow-hidden border-2 transition-all flex-shrink-0 ${idx === activePhotoIdx ? 'border-vipro-magenta opacity-100' : 'border-transparent opacity-40'}`}
+                        className={`relative shrink-0 w-14 h-10 rounded-lg overflow-hidden border-2 transition-all ${
+                          idx === activePhotoIdx
+                            ? 'border-vipro-magenta opacity-100 scale-105'
+                            : 'border-transparent opacity-40'
+                        }`}
                       >
-                        <img 
-                          src={imgUrl} 
+                        <img
+                          src={imgUrl}
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1593113565632-475269f8ed53?q=80&w=800&auto=format&fit=crop";
                           }}
-                          className="w-full h-full object-cover" 
-                          alt="" 
+                          className="w-full h-full object-cover"
+                          alt=""
                         />
                       </button>
                     ))}
@@ -298,57 +306,57 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
                 )}
               </div>
 
-              {/* Right Side: Activity details panel */}
-              <div className="w-full lg:w-96 bg-[#1a0f1a] border-t lg:border-t-0 lg:border-l border-white/10 p-5 lg:p-8 overflow-y-auto flex flex-col flex-1 max-h-[40vh] lg:max-h-[70vh]">
-                <div className="space-y-4 text-left">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="px-3 py-1 bg-vipro-magenta/25 border border-vipro-magenta/40 text-vipro-magenta rounded-full text-[9px] font-bold uppercase tracking-wider">
+              {/* ── DETAILS PANEL ── compact strip on mobile, sidebar on desktop */}
+              <div className="w-full lg:w-96 bg-[#1a0f1a] border-t lg:border-t-0 lg:border-l border-white/10 overflow-y-auto lg:max-h-[80vh]"
+                style={{ maxHeight: '30vh' }}
+              >
+                <div className="p-4 lg:p-8 space-y-3">
+                  {/* Tags row */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="px-2.5 py-0.5 bg-vipro-magenta/25 border border-vipro-magenta/40 text-vipro-magenta rounded-full text-[9px] font-bold uppercase tracking-wider">
                       Activity Stack
                     </span>
                     {selectedActivity.date && (
-                      <div className="flex items-center space-x-1 text-gray-400 text-[10px]">
+                      <div className="flex items-center gap-1 text-gray-400 text-[10px]">
                         <Calendar className="w-3 h-3 text-vipro-gold" />
                         <span>{formatDate(selectedActivity.date)}</span>
                       </div>
                     )}
                   </div>
 
-                  <h3 className="text-xl font-serif font-bold text-vipro-beige leading-snug">
+                  {/* Title */}
+                  <h3 className="text-base lg:text-2xl font-serif font-bold text-vipro-beige leading-snug">
                     {selectedActivity.title}
                   </h3>
 
-                  <div className="space-y-3">
-                    {selectedActivity.descEn && (
-                      <div className="space-y-1">
-                        <span className="text-[9px] font-bold tracking-wider text-vipro-gold uppercase">English Overview</span>
-                        <p className="text-gray-300 text-[12px] leading-relaxed font-normal">
-                          {selectedActivity.descEn}
-                        </p>
-                      </div>
-                    )}
+                  {/* Descriptions */}
+                  {selectedActivity.descEn && (
+                    <div>
+                      <span className="text-[9px] font-bold tracking-wider text-vipro-gold uppercase">English</span>
+                      <p className="text-gray-300 text-xs leading-relaxed mt-0.5">{selectedActivity.descEn}</p>
+                    </div>
+                  )}
 
-                    {selectedActivity.descTa && (
-                      <div className="space-y-1 border-t border-white/5 pt-3">
-                        <span className="text-[9px] font-bold tracking-wider text-vipro-gold uppercase">தமிழ் விளக்கம் (Tamil)</span>
-                        <p className="text-vipro-beige/80 text-[12px] leading-relaxed font-normal italic font-serif">
-                          {selectedActivity.descTa}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                  {selectedActivity.descTa && (
+                    <div className="border-t border-white/5 pt-2">
+                      <span className="text-[9px] font-bold tracking-wider text-vipro-gold uppercase">தமிழ்</span>
+                      <p className="text-vipro-beige/70 text-xs leading-relaxed mt-0.5 italic font-serif">{selectedActivity.descTa}</p>
+                    </div>
+                  )}
 
-                <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between text-[10px] text-gray-400">
-                  <div className="flex items-center space-x-1">
-                    <Layers className="w-3 h-3 text-gray-500" />
-                    <span>Photo {activePhotoIdx + 1} of {selectedActivity.images.length}</span>
+                  {/* Footer */}
+                  <div className="flex items-center justify-between pt-2 border-t border-white/5 text-[10px] text-gray-400">
+                    <div className="flex items-center gap-1">
+                      <Layers className="w-3 h-3 text-gray-500" />
+                      <span>Photo {activePhotoIdx + 1} of {selectedActivity.images.length}</span>
+                    </div>
+                    <button
+                      onClick={() => setSelectedActivity(null)}
+                      className="text-vipro-magenta font-semibold text-xs"
+                    >
+                      Close
+                    </button>
                   </div>
-                  <button 
-                    onClick={() => setSelectedActivity(null)}
-                    className="text-vipro-magenta font-semibold hover:underline"
-                  >
-                    Close Slider
-                  </button>
                 </div>
               </div>
             </motion.div>
