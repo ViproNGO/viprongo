@@ -218,7 +218,7 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
         {selectedActivity && (
           <div 
             onClick={() => setSelectedActivity(null)}
-            className="fixed inset-0 bg-black/95 backdrop-blur-md z-[100] flex items-center justify-center p-4 md:p-8 select-none"
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-[100] flex items-center justify-center p-2 sm:p-4 md:p-8 select-none"
           >
             {/* Lightroom Card Container */}
             <motion.div
@@ -226,21 +226,21 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-6xl bg-[#150d15] rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl flex flex-col lg:flex-row overflow-hidden max-h-[92vh] sm:max-h-[90vh]"
+              className="relative w-full max-w-6xl bg-[#150d15] rounded-2xl border border-white/10 shadow-2xl flex flex-col lg:flex-row overflow-hidden max-h-[95vh] sm:max-h-[90vh]"
             >
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedActivity(null)}
-                className="absolute top-4 right-4 z-50 p-2.5 bg-black/50 border border-white/10 hover:bg-white/10 text-white rounded-full transition-colors backdrop-blur-md"
+                className="absolute top-2 right-2 z-50 p-2 bg-black/50 border border-white/10 hover:bg-white/10 text-white rounded-full transition-colors backdrop-blur-md"
                 title="Close"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
 
               {/* Left Side: Dynamic Photo Slideshow Box */}
-              <div className="flex-1 bg-black flex flex-col justify-between items-center relative aspect-video lg:aspect-auto lg:h-[70vh] min-h-[220px] sm:min-h-[300px]">
+              <div className="flex-[0.6] bg-black flex flex-col justify-between items-center relative h-[60vh] lg:aspect-auto lg:h-[70vh]">
                 {/* Active Image Frame */}
-                <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden p-6">
+                <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={activePhotoIdx}
@@ -252,7 +252,7 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ duration: 0.3 }}
-                      className="max-w-full max-h-full object-contain rounded-2xl shadow-xl"
+                      className="max-w-full max-h-full object-contain"
                     />
                   </AnimatePresence>
 
@@ -261,15 +261,15 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
                     <>
                       <button
                         onClick={handlePrevPhoto}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 border border-white/10 hover:bg-white/10 text-white rounded-full transition-all hover:scale-105 active:scale-95 backdrop-blur-sm z-30"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/40 border border-white/10 hover:bg-white/10 text-white rounded-full transition-all backdrop-blur-sm z-30"
                       >
-                        <ChevronLeft className="w-6 h-6" />
+                        <ChevronLeft className="w-5 h-5" />
                       </button>
                       <button
                         onClick={handleNextPhoto}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 border border-white/10 hover:bg-white/10 text-white rounded-full transition-all hover:scale-105 active:scale-95 backdrop-blur-sm z-30"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/40 border border-white/10 hover:bg-white/10 text-white rounded-full transition-all backdrop-blur-sm z-30"
                       >
-                        <ChevronRight className="w-6 h-6" />
+                        <ChevronRight className="w-5 h-5" />
                       </button>
                     </>
                   )}
@@ -277,12 +277,12 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
 
                 {/* Interactive Slider Thumbnail Strip at the bottom */}
                 {selectedActivity.images.length > 1 && (
-                  <div className="w-full bg-[#180f18]/60 backdrop-blur-md border-t border-white/5 py-4 px-6 overflow-x-auto flex justify-center space-x-3 scrollbar-none shrink-0 z-20">
+                  <div className="w-full bg-[#180f18]/60 backdrop-blur-md border-t border-white/5 py-3 px-2 overflow-x-auto flex justify-start lg:justify-center space-x-2 scrollbar-none shrink-0 z-20">
                     {selectedActivity.images.map((imgUrl: string, idx: number) => (
                       <button
                         key={idx}
                         onClick={() => setActivePhotoIdx(idx)}
-                        className={`relative w-16 h-12 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 hover:brightness-110 ${idx === activePhotoIdx ? 'border-vipro-magenta scale-105 shadow-md shadow-vipro-magenta/30' : 'border-transparent opacity-50'}`}
+                        className={`relative w-12 h-10 rounded-md overflow-hidden border-2 transition-all flex-shrink-0 ${idx === activePhotoIdx ? 'border-vipro-magenta opacity-100' : 'border-transparent opacity-40'}`}
                       >
                         <img 
                           src={imgUrl} 
@@ -299,38 +299,38 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
               </div>
 
               {/* Right Side: Activity details panel */}
-              <div className="w-full lg:w-96 bg-[#1a0f1a] border-t lg:border-t-0 lg:border-l border-white/10 p-8 overflow-y-auto flex flex-col justify-between max-h-[40vh] lg:max-h-[70vh]">
-                <div className="space-y-6 text-left">
+              <div className="w-full lg:w-96 bg-[#1a0f1a] border-t lg:border-t-0 lg:border-l border-white/10 p-5 lg:p-8 overflow-y-auto flex flex-col flex-1 max-h-[40vh] lg:max-h-[70vh]">
+                <div className="space-y-4 text-left">
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="px-3 py-1 bg-vipro-magenta/25 border border-vipro-magenta/40 text-vipro-magenta rounded-full text-[9px] font-bold uppercase tracking-wider">
                       Activity Stack
                     </span>
                     {selectedActivity.date && (
-                      <div className="flex items-center space-x-1 text-gray-400 text-xs">
-                        <Calendar className="w-3.5 h-3.5 text-vipro-gold" />
+                      <div className="flex items-center space-x-1 text-gray-400 text-[10px]">
+                        <Calendar className="w-3 h-3 text-vipro-gold" />
                         <span>{formatDate(selectedActivity.date)}</span>
                       </div>
                     )}
                   </div>
 
-                  <h3 className="text-2xl font-serif font-bold text-vipro-beige leading-snug">
+                  <h3 className="text-xl font-serif font-bold text-vipro-beige leading-snug">
                     {selectedActivity.title}
                   </h3>
 
-                  <div className="space-y-4 pt-2">
+                  <div className="space-y-3">
                     {selectedActivity.descEn && (
-                      <div className="space-y-1.5">
-                        <span className="text-[10px] font-bold tracking-wider text-vipro-gold uppercase">English Overview</span>
-                        <p className="text-gray-300 text-sm leading-relaxed font-normal">
+                      <div className="space-y-1">
+                        <span className="text-[9px] font-bold tracking-wider text-vipro-gold uppercase">English Overview</span>
+                        <p className="text-gray-300 text-[12px] leading-relaxed font-normal">
                           {selectedActivity.descEn}
                         </p>
                       </div>
                     )}
 
                     {selectedActivity.descTa && (
-                      <div className="space-y-1.5 border-t border-white/5 pt-4">
-                        <span className="text-[10px] font-bold tracking-wider text-vipro-gold uppercase">தமிழ் விளக்கம் (Tamil)</span>
-                        <p className="text-vipro-beige/80 text-[13px] leading-relaxed font-normal italic font-serif">
+                      <div className="space-y-1 border-t border-white/5 pt-3">
+                        <span className="text-[9px] font-bold tracking-wider text-vipro-gold uppercase">தமிழ் விளக்கம் (Tamil)</span>
+                        <p className="text-vipro-beige/80 text-[12px] leading-relaxed font-normal italic font-serif">
                           {selectedActivity.descTa}
                         </p>
                       </div>
@@ -338,9 +338,9 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
                   </div>
                 </div>
 
-                <div className="pt-8 border-t border-white/5 flex items-center justify-between text-xs text-gray-400 mt-6 lg:mt-0">
+                <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between text-[10px] text-gray-400">
                   <div className="flex items-center space-x-1">
-                    <Layers className="w-4 h-4 text-gray-500" />
+                    <Layers className="w-3 h-3 text-gray-500" />
                     <span>Photo {activePhotoIdx + 1} of {selectedActivity.images.length}</span>
                   </div>
                   <button 
