@@ -21,7 +21,7 @@ export default async function Home() {
       {sections.mission && <MissionVisionSection content={content.mission} />}
       {sections.programs && <ProgramsSection />}
       {sections.impact && <ImpactStoriesSection stories={stories} />}
-      {sections.gallery && <GallerySection galleryData={gallery} />}
+      {sections.gallery && <GallerySection galleryData={gallery} preview={true} />}
       {sections.contact && <ContactSection whatsapp={content.general?.whatsapp} contactData={content.contact} />}
     </>
   );

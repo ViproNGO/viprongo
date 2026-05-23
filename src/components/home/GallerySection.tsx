@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Images, ChevronLeft, ChevronRight, X, Layers } from "lucide-react";
+import { Calendar, Images, ChevronLeft, ChevronRight, X, Layers, ArrowRight } from "lucide-react";
 
 // Premium Seed fallback data representing bilingual Activity Stacks
 const fallbackActivities = [
@@ -40,7 +41,7 @@ const fallbackActivities = [
   }
 ];
 
-export function GallerySection({ galleryData }: { galleryData?: any[] }) {
+export function GallerySection({ galleryData, preview = false }: { galleryData?: any[]; preview?: boolean }) {
   // Normalize and sort gallery items so that the newly added stack/newest date is displayed first
   const activities = (galleryData && galleryData.length > 0 ? galleryData : fallbackActivities)
     .map((act, index) => {
@@ -137,7 +138,7 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
           layout
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 lg:gap-10 pt-4"
         >
-          {activities.map((act) => {
+          {(preview ? activities.slice(0, 3) : activities).map((act) => {
             const hasMultiple = act.images.length > 1;
             const primaryImg = act.images[0] || "https://images.unsplash.com/photo-1593113565632-475269f8ed53?q=80&w=800&auto=format&fit=crop";
             
@@ -211,6 +212,28 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
             );
           })}
         </motion.div>
+
+        {/* View Entire Gallery CTA — only in preview mode when there are more than 3 stacks */}
+        {preview && activities.length > 3 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 sm:mt-16 flex flex-col items-center gap-3 text-center"
+          >
+            <p className="text-sm text-gray-400 dark:text-gray-500">
+              Showing 3 of <span className="text-vipro-purple dark:text-vipro-gold font-bold">{activities.length}</span> activity stacks
+            </p>
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-vipro-purple hover:bg-vipro-purple-light dark:bg-vipro-magenta dark:hover:bg-vipro-magenta-light text-white font-bold rounded-2xl shadow-lg shadow-vipro-purple/20 dark:shadow-vipro-magenta/20 transition-all hover:-translate-y-1 hover:shadow-xl text-sm sm:text-base"
+            >
+              <Images className="w-5 h-5" />
+              View Entire Gallery
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
+        )}
       </div>
 
       {/* FULL-SCREEN IMMERSIVE LIGHTBOX CAROUSEL MODAL */}
