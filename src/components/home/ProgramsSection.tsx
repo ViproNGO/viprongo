@@ -38,15 +38,15 @@ const programs = [
 
 export function ProgramsSection() {
   return (
-    <section id="programs" className="py-24 bg-white dark:bg-[#120a12]">
+    <section id="programs" className="py-12 sm:py-16 md:py-24 bg-white dark:bg-[#120a12]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-vipro-magenta font-semibold tracking-wider uppercase text-sm mb-4"
+            className="text-vipro-magenta font-semibold tracking-wider uppercase text-xs sm:text-sm mb-3 sm:mb-4"
           >
             Our Initiatives
           </motion.h2>
@@ -55,7 +55,7 @@ export function ProgramsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-serif font-bold text-vipro-purple dark:text-vipro-beige mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-vipro-purple dark:text-vipro-beige mb-4 sm:mb-6 leading-tight"
           >
             Programs That Drive Change
           </motion.h3>
@@ -64,13 +64,13 @@ export function ProgramsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-gray-600 dark:text-gray-300"
+            className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300"
           >
             Our diverse range of programs are designed to provide end-to-end support, ensuring women achieve lasting economic and social independence.
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {programs.map((prog, idx) => (
             <motion.div
               key={prog.title}
@@ -78,14 +78,14 @@ export function ProgramsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group relative bg-vipro-beige dark:bg-white/5 rounded-3xl p-8 overflow-hidden hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-vipro-magenta/20"
+              className="group relative bg-vipro-beige dark:bg-white/5 rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 overflow-hidden hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-vipro-magenta/20"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-vipro-magenta/10 to-transparent rounded-bl-[100px] -mr-10 -mt-10 transition-transform group-hover:scale-150" />
+              <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-vipro-magenta/10 to-transparent rounded-bl-[100px] -mr-8 -mt-8 sm:-mr-10 sm:-mt-10 transition-transform group-hover:scale-150" />
               
               <div className="relative z-10">
-                <prog.icon className="w-10 h-10 text-vipro-purple dark:text-vipro-gold mb-6 group-hover:scale-110 transition-transform" />
-                <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{prog.title}</h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-2 leading-relaxed">
+                <prog.icon className="w-8 h-8 sm:w-10 sm:h-10 text-vipro-purple dark:text-vipro-gold mb-4 sm:mb-6 group-hover:scale-110 transition-transform" />
+                <h4 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-4">{prog.title}</h4>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
                   {prog.desc}
                 </p>
               </div>

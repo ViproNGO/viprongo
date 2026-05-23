@@ -33,36 +33,36 @@ const aboutCards = [
 
 export function AboutSection({ content }: { content?: any }) {
   return (
-    <section id="about" className="py-24 bg-white dark:bg-[#120a12] relative overflow-hidden">
+    <section id="about" className="py-12 sm:py-16 md:py-24 bg-white dark:bg-[#120a12] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
-            <div className="space-y-4">
-              <h2 className="text-vipro-magenta font-semibold tracking-wider uppercase text-sm">About VIPRO</h2>
-              <h3 className="text-4xl md:text-5xl font-serif font-bold text-vipro-purple dark:text-vipro-beige">
+            <div className="space-y-3 sm:space-y-4">
+              <h2 className="text-vipro-magenta font-semibold tracking-wider uppercase text-xs sm:text-sm">About VIPRO</h2>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-vipro-purple dark:text-vipro-beige leading-tight">
                 {content?.title || "A Journey of Hope & Empowerment"}
               </h3>
             </div>
             
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
               {content?.description1 || "For over a decade, VIPRO has been at the forefront of social transformation. We believe that when you empower a woman, you empower a family, a community, and ultimately, a nation."}
             </p>
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
               {content?.description2 || "Through targeted interventions in rural and urban areas, we provide women with the tools they need—be it through Self-Help Groups (SHGs), rigorous skill development, or access to livelihood opportunities—to rewrite their destinies."}
             </p>
             
 
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6">
             {aboutCards.map((card, idx) => (
               <motion.div
                 key={card.title}
@@ -70,13 +70,13 @@ export function AboutSection({ content }: { content?: any }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="p-6 rounded-2xl bg-gray-50 dark:bg-white/5 hover:shadow-xl transition-shadow border border-gray-100 dark:border-white/10 group"
+                className="p-4 sm:p-6 rounded-2xl bg-gray-50 dark:bg-white/5 hover:shadow-xl transition-shadow border border-gray-100 dark:border-white/10 group"
               >
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${card.color} group-hover:scale-110 transition-transform duration-300`}>
-                  <card.icon className="w-7 h-7" />
+                <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-3 sm:mb-6 ${card.color} group-hover:scale-110 transition-transform duration-300`}>
+                  <card.icon className="w-5 h-5 sm:w-7 sm:h-7" />
                 </div>
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{card.title}</h4>
-                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                <h4 className="text-base sm:text-xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-3">{card.title}</h4>
+                <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm leading-relaxed">
                   {card.desc}
                 </p>
               </motion.div>

@@ -115,19 +115,19 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
   };
 
   return (
-    <section id="gallery" className="py-24 bg-white dark:bg-[#120a12] relative overflow-hidden">
+    <section id="gallery" className="py-12 sm:py-16 md:py-24 bg-white dark:bg-[#120a12] relative overflow-hidden">
       {/* Background Ambient Glows */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-vipro-magenta/5 rounded-full filter blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-vipro-gold/5 rounded-full filter blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-vipro-magenta/5 rounded-full filter blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-vipro-gold/5 rounded-full filter blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="text-center mb-16">
-          <h2 className="text-vipro-magenta font-semibold tracking-wider uppercase text-sm mb-4">Our Activity Gallery</h2>
-          <h3 className="text-4xl md:text-5xl font-serif font-bold text-vipro-purple dark:text-vipro-beige mb-6">
-            Moments of Livelihood & Lived Impact
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-vipro-magenta font-semibold tracking-wider uppercase text-xs sm:text-sm mb-3 sm:mb-4">Our Activity Gallery</h2>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-vipro-purple dark:text-vipro-beige mb-3 sm:mb-6 leading-tight">
+            Moments of Livelihood &amp; Lived Impact
           </h3>
-          <p className="text-gray-500 dark:text-gray-400 text-sm max-w-2xl mx-auto">
+          <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm max-w-2xl mx-auto">
             Browse through visual collections of various self-reliance programs, self-help groups, and vocational workshops undertaken by our organization.
           </p>
         </div>
@@ -135,7 +135,7 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
         {/* Gallery Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 pt-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 lg:gap-10 pt-4"
         >
           {activities.map((act) => {
             const hasMultiple = act.images.length > 1;
@@ -226,7 +226,7 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-6xl bg-[#150d15] rounded-3xl border border-white/10 shadow-2xl flex flex-col lg:flex-row overflow-hidden max-h-[90vh]"
+              className="relative w-full max-w-6xl bg-[#150d15] rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl flex flex-col lg:flex-row overflow-hidden max-h-[92vh] sm:max-h-[90vh]"
             >
               {/* Close Button */}
               <button 
@@ -238,7 +238,7 @@ export function GallerySection({ galleryData }: { galleryData?: any[] }) {
               </button>
 
               {/* Left Side: Dynamic Photo Slideshow Box */}
-              <div className="flex-1 bg-black flex flex-col justify-between items-center relative aspect-video lg:aspect-auto lg:h-[70vh] min-h-[300px]">
+              <div className="flex-1 bg-black flex flex-col justify-between items-center relative aspect-video lg:aspect-auto lg:h-[70vh] min-h-[220px] sm:min-h-[300px]">
                 {/* Active Image Frame */}
                 <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden p-6">
                   <AnimatePresence mode="wait">

@@ -51,22 +51,22 @@ export function HeroSection({ content, logo }: { content?: any; logo?: string })
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-vipro-beige dark:bg-[#0f070f]">
+    <section id="home" className="relative flex flex-col overflow-hidden bg-vipro-beige dark:bg-[#0f070f]">
       {/* Background blobs / Parallax elements */}
       <motion.div 
         style={{ y: y1 }}
-        className="absolute top-[-10%] right-[-5%] w-[40vw] h-[40vw] rounded-full bg-vipro-magenta/20 dark:bg-vipro-magenta/10 blur-[100px] pointer-events-none"
+        className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] sm:w-[40vw] sm:h-[40vw] rounded-full bg-vipro-magenta/20 dark:bg-vipro-magenta/10 blur-[100px] pointer-events-none"
       />
       <motion.div 
         style={{ y: y2 }}
-        className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-vipro-purple/20 dark:bg-vipro-purple/30 blur-[120px] pointer-events-none"
+        className="absolute bottom-[-10%] left-[-10%] w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] rounded-full bg-vipro-purple/20 dark:bg-vipro-purple/30 blur-[120px] pointer-events-none"
       />
 
-      <div className="absolute inset-0 pointer-events-none opacity-50">
+      <div className="absolute inset-0 pointer-events-none opacity-30 sm:opacity-50">
         {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 rounded-full bg-vipro-gold"
+            className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-vipro-gold"
             initial={{
               x: (i * 10) + "vw",
               y: ((i * 15) % 100) + "vh",
@@ -85,7 +85,8 @@ export function HeroSection({ content, logo }: { content?: any; logo?: string })
         ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center pt-24 md:pt-28 pb-36 md:pb-40 flex-grow flex justify-center">
+      {/* Hero Content */}
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16">
         
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -99,12 +100,12 @@ export function HeroSection({ content, logo }: { content?: any; logo?: string })
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="mb-4 md:mb-6 flex justify-center"
+              className="mb-3 sm:mb-4 md:mb-6 flex justify-center"
             >
               <img 
                 src={logo} 
                 alt="VIPRO Logo" 
-                className="h-36 md:h-48 w-auto object-contain drop-shadow-lg transition-transform hover:scale-105"
+                className="h-24 sm:h-32 md:h-44 w-auto object-contain drop-shadow-lg transition-transform hover:scale-105"
               />
             </motion.div>
           )}
@@ -114,40 +115,40 @@ export function HeroSection({ content, logo }: { content?: any; logo?: string })
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.6 }}
-            className="mb-5 flex justify-center"
+            className="mb-4 sm:mb-5 flex justify-center px-2"
           >
-            <span className="text-xs md:text-sm font-bold tracking-[0.25em] uppercase text-vipro-gold dark:text-vipro-gold font-sans bg-vipro-purple/5 dark:bg-white/5 px-4 py-2 rounded-full border border-vipro-purple/10 dark:border-white/10 shadow-sm backdrop-blur-sm">
+            <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.15em] sm:tracking-[0.25em] uppercase text-vipro-gold dark:text-vipro-gold font-sans bg-vipro-purple/5 dark:bg-white/5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-vipro-purple/10 dark:border-white/10 shadow-sm backdrop-blur-sm text-center leading-relaxed">
               Village People Renaissance Organisation
             </span>
           </motion.div>
 
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-vipro-purple dark:text-vipro-beige mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-vipro-purple dark:text-vipro-beige mb-3 sm:mb-4 leading-tight px-2">
             {content?.headline || "Empowering Women."} <br/>
             <span className="text-vipro-magenta">{content?.subheadline || "Transforming Communities."}</span>
           </h1>
           
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+          <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed px-2">
             {content?.description || "VIPRO is building a stronger future for women through skill development, self-help groups, employment opportunities, and sustainable empowerment."}
           </p>
 
         </motion.div>
       </div>
 
-      {/* Stats Counter Section at Bottom */}
+      {/* Stats Counter Section — inline (not absolute) so it doesn't overlap content */}
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="absolute bottom-0 left-0 right-0 bg-white/50 dark:bg-black/40 backdrop-blur-md border-t border-white/20 dark:border-white/10"
+        className="relative z-10 bg-white/50 dark:bg-black/40 backdrop-blur-md border-t border-white/20 dark:border-white/10"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
             {stats.map((stat: any, idx: number) => (
               <div key={idx} className="flex flex-col items-center">
-                <h3 className="text-3xl md:text-4xl font-serif font-bold text-vipro-purple dark:text-vipro-gold mb-2">
+                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-vipro-purple dark:text-vipro-gold mb-1 sm:mb-2">
                   <AnimatedCounter to={stat.value} suffix={stat.suffix} />
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium">
+                <p className="text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 font-medium leading-tight">
                   {stat.label}
                 </p>
               </div>

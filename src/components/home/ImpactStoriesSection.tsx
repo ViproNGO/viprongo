@@ -50,18 +50,18 @@ export function ImpactStoriesSection({ stories }: { stories?: Story[] }) {
   };
 
   return (
-    <section id="impact" className="py-24 bg-vipro-purple dark:bg-[#0f070f] relative overflow-hidden">
+    <section id="impact" className="py-12 sm:py-16 md:py-24 bg-vipro-purple dark:bg-[#0f070f] relative overflow-hidden">
       {/* Background blobs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-vipro-magenta/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-vipro-gold/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-vipro-magenta/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-vipro-gold/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header with Navigation Controls */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 md:mb-16">
           <div className="max-w-2xl">
-            <h2 className="text-vipro-gold font-semibold tracking-wider uppercase text-sm mb-4">Voices of Transformation</h2>
-            <h3 className="text-4xl md:text-5xl font-serif font-bold text-white leading-tight">
+            <h2 className="text-vipro-gold font-semibold tracking-wider uppercase text-xs sm:text-sm mb-2 sm:mb-4">Voices of Transformation</h2>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white leading-tight">
               Real Stories, Real Impact
             </h3>
           </div>
