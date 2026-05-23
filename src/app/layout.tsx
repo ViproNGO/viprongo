@@ -5,6 +5,7 @@ import { SmoothScrolling } from "@/components/SmoothScrolling";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { AdminPanel } from "@/components/AdminPanel";
+import { LoadingScreen } from "@/components/LoadingScreen";
 import { cookies } from "next/headers";
 import { fetchCmsData } from "@/lib/cms";
 
@@ -50,7 +51,8 @@ export default async function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col font-sans">
+      <body className="min-h-screen flex flex-col font-sans relative overflow-x-hidden">
+        <LoadingScreen logo={logo} />
         <SmoothScrolling>
           <Navbar isAdmin={isAdmin} logo={logo} />
           <main className="flex-grow">{children}</main>
